@@ -45,7 +45,7 @@ def get_func_info_by_addr(file_name, func_addr):
 
 def get_func_args(func):
     arg_list = []
-    for var in (func['regvars'] +func['bpvars']) :
+    for var in (func['regvars'] + func['bpvars'] + func['spvars']) :
         if 'arg' in var['kind']:
             arg_list.append(var)
         elif 'arg' in var['name'] and 'reg' in var['kind']:
