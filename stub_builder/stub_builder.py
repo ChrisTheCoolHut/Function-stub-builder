@@ -46,7 +46,7 @@ def handle_hardcode(args):
             args.func_args_prototype,
             args.func_return_type
             )
-    print(local_string)
+    print_results(args.File, local_string)
 
 def handle_recover(args):
     func = None
@@ -75,9 +75,12 @@ def handle_recover(args):
             arg_prototype,
             func_return
             )
+    print_results(args.File, local_string)
+
+def print_results(file_name, local_string):
     print("[+] Modify main_hook.c to call instrumented function")
     print("[+] Compile with \"gcc main_hook.c -o main_hook.so -fPIC -shared -ldl\"")
-    command = command_template.format(args.File)
+    command = command_template.format(file_name)
     print("[+] Hook with: {}".format(command))
 
     with open("main_hook.c", 'w') as f:
